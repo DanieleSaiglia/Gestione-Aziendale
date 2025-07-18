@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Packing List App</title>
+</head>
+<body>
+  <h1>Gestione Prodotti Finito</h1>
+  <form method="POST">
+    Nome: <input name="nome">
+    Codice: <input name="codice">
+    Quantità: <input name="qty" type="number">
+    <button type="submit">Aggiungi Prodotto</button>
+  </form>
+  <hr>
+  <h2>Seleziona Prodotti + Cliente</h2>
+  <form method="POST" action="/genera">
+    Cliente:
+    <select name="cliente">
+      {% for c in clienti %}
+        <option value="{{ c[0] }}">{{ c[1] }}</option>
+      {% endfor %}
+    </select>
+    <table border="1" cellpadding="5" cellspacing="0">
+      <tr><th>OK</th><th>Nome</th><th>Codice</th><th>Qty</th></tr>
+      {% for p in prodotti %}
+      <tr>
+        <td><input type="checkbox" name="prod_id" value="{{ p[0] }}"></td>
+        <td>{{ p[1] }}</td><td>{{ p[2] }}</td><td>{{ p[3] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <button type="submit">Genera PDF Packing List</button>
+  </form>
+</body>
+</html>
